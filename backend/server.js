@@ -4,7 +4,7 @@ const app = express()
 const cors = require('cors')
 
 // Konfiguration
-const PORT = 1337
+const PORT = process.env.PORT || 1337
 const distPath = __dirname + '/../dist/'
 console.log('distpath:', distPath)
 
