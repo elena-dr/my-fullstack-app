@@ -20,6 +20,7 @@ function App() {
 				<section> {maybeData ? (
 					maybeData.map(fruit => (<p key={fruit}> {fruit} </p>))
 				) : 'No data yet...'} </section>
+				<img src={fixUrl("/img/hamster-14.jpg")} />
 			</main>
 		</div>
 	)

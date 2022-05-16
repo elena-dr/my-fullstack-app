@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "start": "nodemon backend/server.js"
+    "start": "nodemon backend/server.js",
+    "start-backend": "nodemon backend/server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
