@@ -6,7 +6,7 @@ const cors = require('cors')
 const fruitsRouter = require('./routes/fruits.js')
 
 // Konfiguration
-const PORT = 1337
+const PORT = process.env.PORT || 1337
 const distPath = path.join(__dirname, '/../dist/')
 console.log('distpath:', distPath)
 
