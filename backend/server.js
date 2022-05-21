@@ -3,14 +3,13 @@ const path = require('path')
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const fruitsRouter = require('./routes/fruits.js')
+// const fruitsRouter = require(./routes/hamsters.js')
+const hamstersRouter = require('./routes/hamsters')
 
 // Konfiguration
-const PORT = process.env.PORT || 1337
+const PORT = process.env.PORT || 433
 const distPath = path.join(__dirname, '/../dist/')
 console.log('distpath:', distPath)
-
-
 
 // Middleware
 app.use( cors() )
@@ -22,10 +21,9 @@ app.use('/img', express.static(path.join(__dirname, './hamsterImages/')))
 
 
 // Endpoints
-app.use('/fruits', fruitsRouter)
+app.use('/hamsters', hamstersRouter)
+// app.use('/fruits', fruitsRouter)
 //Saknas: /hamsters, /matches
-
-
 
 app.listen(PORT, () => {
 	console.log('Server listening on port ', PORT)
