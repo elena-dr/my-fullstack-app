@@ -1,7 +1,7 @@
 import { response } from 'express';
 import { useEffect, useState } from 'react'
 // import { Hamsters } from '../../models/hamsters';
-import { fixUrl } from '../../utils';
+import { fixUrl, imageUrl } from '../../utils';
 import './GamesData.css'
 import Result from './Results'
 
@@ -61,12 +61,12 @@ const GamesData = (props: any) => {
             updateHamster(win.id, winsUpdate),
             updateHamster(lose.id, loseUpdate)
         ]).then(async () =>  {
-            const updatedWin = await fetch(fixUrl(`/hamsters/${id}`));
+            const updatedWin = await fetch(imageUrl(win.id));
             const jsonWin = await updatedWin.json()
             setWinHamster(jsonWin)
 
-            const updatedLose = await fetch(fixUrl(`/hamsters/${id}`));
-            const jsonLose = await updatedWin.json()
+            const updatedLose = await fetch(imageUrl(lose.id));
+            const jsonLose = await updatedLose.json()
             setLoseHamster(jsonLose)
             
             
@@ -82,11 +82,11 @@ const GamesData = (props: any) => {
             <div className="battle-vote">
                 <div onClick={() => battleVote(hamster1, hamster2)}>
                     <p>{hamster1.name}</p>
-                    <img className="image-battle" src={fixUrl(`/img/${hamster1.imgName}`)} alt={hamster1.imgName} />   
+                    <img className="image-battle" src={imageUrl(hamster1.imgName)} alt={hamster1.imgName} />   
             </div>
             <div onClick={() => battleVote(hamster2, hamster1)}>
                 <p>{hamster2.name}</p>
-                <img className="image-battle" src={fixUrl(`/img/${hamster2.imgName}`)} alt={hamster2.imgName} />
+                <img className="image-battle" src={imageUrl(hamster2.imgName)} alt={hamster2.imgName} />
                 </div>
             </div>
 
