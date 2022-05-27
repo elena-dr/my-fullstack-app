@@ -1,22 +1,13 @@
-import { useState, useEffect } from 'react'
+
 import './App.css'
-import { fixUrl } from './utils'
 import { Link, Routes, Route } from 'react-router-dom'
-import Start from './components/Start'
-import Contest from './components/Contest'
+import Start from './components/startPage/Start'
+import Contest from './components/contest/Contest'
 import Gallery from './components/gallery/Gallery'
 
 
 
 function App() {
-	// const [maybeData, setMaybeData] = useState<string[] | null>(null)
-
-		// const getData: (() => Promise<void>) = async () => {
-	// 	const response = await fetch(fixUrl('/hamsters'))
-	// 	const data = await response.json()
-	// 	// om response.json misslyckas: kontrollera din URL, kontrollera om du får en HTML-sida
-	// 	setMaybeData(data)
-	// }
 
 	return (
 		<div className="app">
@@ -37,9 +28,9 @@ function App() {
 					</Routes>
 </div>
 			</main>
-			<footer className="footer">
+			{/* <div className="footer">
 <p>Lena Drozdova, Hamster War, 2022</p>
-			</footer>
+			</div> */}
 			
 		</div>
 	)

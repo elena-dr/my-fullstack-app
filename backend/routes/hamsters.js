@@ -5,8 +5,6 @@ import hamsterController from '../controllers/hamsterController.js'
 
 // Data hämtas från Firestore!
 
-console.log(hamsterController)
-
 router.get('/', hamsterController.getAll)
 router.get('/random', hamsterController.getRandom)
 router.get('/:id', hamsterController.getById)

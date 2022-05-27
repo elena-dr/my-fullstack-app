@@ -9,11 +9,12 @@ const hamstersRouter = require('./routes/hamsters')
 // Konfiguration
 const PORT = process.env.PORT || 433
 const distPath = path.join(__dirname, '/../dist/')
-console.log('distpath:', distPath)
 
 // Middleware
-app.use( cors() )
-app.use( express.urlencoded({ extended: true }) )
+app.use(cors())
+
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
 app.use(express.static(distPath)) // '/' ->> dist/index.html
 
 //'/img/hamster-14.jpg' ->> local images './hamsterImages/hamster-14.jpg

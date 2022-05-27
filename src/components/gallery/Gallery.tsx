@@ -1,97 +1,98 @@
-import { database } from 'firebase-admin';
+
 import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
 import { Hamsters } from '../../models/hamsters'
-import { fixUrl } from '../../utils'
+import { fixUrl, imageUrl } from '../../utils'
 import './Gallery.css'
 
 
-interface HamsterInfo {
-    name: string;
-    sprites: {
-        front_default: string;
-    }
-}
 
 const Gallery = () => {
     const [hamsters, setHamsters] = useState<null | Hamsters[]>(null)
-    const [hamsterInfo, setHamsterInfo] = useState<null | HamsterInfo>(null)
+    
+    const [selectedHamster, setSelectedHamster] = useState("")
     const [name, setName] = useState<string>('')
     const [age, setAge] = useState<string>('')
     const [favFood, setFavFood] = useState<string>('')
     const [loves, setLoves] = useState<string>('')
-    const [newHamster, setNewHamster] = useState()
-
+    const [image, setImage] = useState('')
+   
     
+    const moreInfo = (hId: string) => {
+        if (hId === selectedHamster) return ''
+        return 'hide'
+    }
 
-// const newHamster = useSelector((state: RootState) => state.contest.value)
+    // const imageOnChange = (e: any) => {
+    //     const [imageUrl] = e.target.img;
+    //     setImage(URL.createObjectURL(imageUrl))
+    // }
 
     const addHamster = async (e: any) => {
         e.preventDefault()
-        let newHamster = { imgName: fixUrl(`/hamster-1.jpg`), name: name, age: age, favFood: favFood, loves: loves }
+        let newHamster = { imgName: image, name: name, age: age, favFood: favFood, loves: loves }
 
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ newHamster })
+            body: JSON.stringify(newHamster)
         }
         const response: Response = await fetch(fixUrl(`/hamsters/`), requestOptions)
         const result = await response.json()
-        setNewHamster(result)
-        
-        
+                       
         console.log('added: ', result)
-        // fetch POST 
+        getHamsters()
+        
     }
+
 
     const deleteHamster = async (id: string) => {
         console.log('delete hamster with id:', id)
         fetch(fixUrl(`/hamsters/${id}`), {
             method: 'DELETE',
-          })
+        })
+        setHamsters(hamsters)
+         
     }
 
-
-    
+   
     useEffect(() => {
         getHamsters()
-    }, [])
+    }, [setHamsters])
 
     async function getHamsters() {
         const response = await fetch(fixUrl('/hamsters'))
         const hamsters = await response.json()
         console.log('Fetched', hamsters)
         setHamsters(hamsters)
-        
-        }
+    }
  
     return (
         <div>
-            <h3>Galleri</h3>
-
             <main> 
                 <>
                     
                     <form>
+                        <p>Lägg till en ny hamster</p>
                         <ul>
                             <li>
-                                <input placeholder='Name' value={name} onChange={(e) => setName(e.target.value)}></input>
+                                <input placeholder='Namn' value={name} onChange={(e) => setName(e.target.value)}></input>
                                </li>
                             <li>
-                                <input placeholder='Age' value={age} onChange={(e) => setAge(e.target.value)}></input>
+                                <input placeholder='Ålder' value={age} onChange={(e) => setAge(e.target.value)}></input>
                             </li>
                             <li>
-                                <input placeholder='Favourite food' value={favFood} onChange={(e) => setFavFood(e.target.value)}></input>
+                                <input placeholder='Favoritmat' value={favFood} onChange={(e) => setFavFood(e.target.value)}></input>
                             </li>
                             <li>
-                                <input placeholder='He likes...' value={loves} onChange={(e) => setLoves(e.target.value)}></input>
+                                <input placeholder='Han/hon gillar...' value={loves} onChange={(e) => setLoves(e.target.value)}></input>
                             </li>
                             <li>
-                                <button type="submit" onClick={addHamster}>Add new hamster</button>
+                                <input placeholder="Lägg till URL" value={image} onChange={(e) =>setImage(e.target.value)}></input>
                             </li>
+                            
+                                <button className="button" type="submit" onClick={addHamster}>Lägg till</button>
+                            
                         </ul>                                                                
-                        
                         
                     </form>
                 </>
@@ -100,9 +101,16 @@ const Gallery = () => {
                     <div className="hamsters-gallery">
                         {hamsters?.map(hamster => 
                         <section className="section-h" key={hamster.id}>
-                            <img src={fixUrl(`/img/${hamster.imgName}`)} alt={hamster.name}></img>
-                            <p>{hamster.name}</p>
-                            <button onClick={()=> deleteHamster(hamster.id)}>Delete</button>
+                            <img src={imageUrl(hamster.imgName)} alt={hamster.name}></img>
+                                <p className="name">{hamster.name}</p>
+                                <button className="button" onClick={() => setSelectedHamster(hamster.id) }>Mer info</button>
+                                <div className={moreInfo(hamster.id)}>
+                                    <p>{hamster.wins}</p>
+                                    <p>{hamster.defeats}</p>
+                                    <p>{hamster.favFood}</p>
+                                    <p>{hamster.loves}</p>
+                                </div>
+                            <button className="button" onClick={()=> deleteHamster(hamster.id)}>Ta bort</button>
                         </section>)}
                     </div>
                     

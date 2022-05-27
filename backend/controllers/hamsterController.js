@@ -1,3 +1,5 @@
+import { convertCompilerOptionsFromJson } from 'typescript'
+
 const { collection, getDocs, doc, getDoc, addDoc, updateDoc, deleteDoc } = require('firebase/firestore')
 const { db } = require('../database/firebase.js')
 
@@ -25,7 +27,9 @@ hamsterController.getRandom = async (req, res) => {
         const colRef = collection(db, 'hamsters')
         const snapshot = await getDocs(colRef)
 
-        var randomHamster = snapshot.docs[Math.floor(Math.random() * snapshot.docs.length)].data();
+
+        var randomHamster = snapshot.docs[Math.floor(Math.random() * snapshot.docs.length)];
+        randomHamster = {...randomHamster.data(), id: randomHamster.id}
 
         res.send(randomHamster)
     } catch (error) {
@@ -38,12 +42,16 @@ hamsterController.getById = async (req, res) => {
     try {
         const _id = req.params.id
         const docRef = doc(db, 'hamsters', _id)
-        const hamster = await getDoc(docRef)
+        let hamster = await getDoc(docRef)
 
         console.log('hamsterById', hamster)
 
         if (!hamster.exists()) res.sendStatus(404)
-        else res.status(200).send(hamster.data())
+            
+        else {
+            hamster = { ...hamster.data(), id: hamster.id }
+            res.status(200).send(hamster)
+        } 
 
 
     } catch (error) {
@@ -77,6 +85,7 @@ hamsterController.postHam = async (req, res) => {
 hamsterController.putHam = async (req, res) => {
 
     try {
+        console.log('updating', req.body)
         let hamsterToChange = req.params.id
         const docRef = doc(db, 'hamsters', hamsterToChange)
         const { name, age, favFood, loves, imgName, wins, defeats, games } = req.body

@@ -1,0 +1,21 @@
+.cutest-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.image-cutest {
+    box-shadow: 8px 12px 20px rgba(6, 200, 235, 0.895);
+    height: 250px;
+    width: 300px;
+
+}
+
+.name-cutest {
+    font-size: 45px;
+}
+
+
+   
+
+  
