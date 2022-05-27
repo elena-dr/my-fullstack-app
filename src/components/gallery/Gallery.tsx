@@ -49,8 +49,9 @@ const Gallery = () => {
         console.log('delete hamster with id:', id)
         fetch(fixUrl(`/hamsters/${id}`), {
             method: 'DELETE',
+        }).then(res => {
+            getHamsters()
         })
-        setHamsters(hamsters)
          
     }
 

@@ -1,4 +1,4 @@
-import { response } from 'express';
+
 import { useEffect, useState } from 'react'
 // import { Hamsters } from '../../models/hamsters';
 import { fixUrl, imageUrl } from '../../utils';
