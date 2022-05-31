@@ -1,8 +1,8 @@
 // const express = require('express')
 import express from 'express'
-const router = express.Router()
-
 import hamsterController from '../controllers/hamsterController.js'
+var router = express.Router()
+
 
 // Data hämtas från Firestore!
 
@@ -14,4 +14,4 @@ router.put('/:id', hamsterController.putHam)
 router.delete('/:id', hamsterController.deleteHam)
 
 
-export default router
+module.exports.router = router
