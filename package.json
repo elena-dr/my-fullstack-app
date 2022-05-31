@@ -2,6 +2,9 @@
   "name": "my-fullstack-app",
   "private": false,
   "version": "0.0.0",
+  "engines": {
+    "node": "18.2.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
