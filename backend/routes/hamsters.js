@@ -1,4 +1,5 @@
-const express = require('express')
+// const express = require('express')
+import express from 'express'
 const router = express.Router()
 
 import hamsterController from '../controllers/hamsterController.js'
@@ -13,4 +14,4 @@ router.put('/:id', hamsterController.putHam)
 router.delete('/:id', hamsterController.deleteHam)
 
 
-module.exports = router
+export default router

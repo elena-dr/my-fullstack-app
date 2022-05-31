@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(express.static(distPath)) // '/' ->> dist/index.html
 
 
+
 app.use('/img', express.static(path.join(__dirname, './hamsterImages/')))
 
 
