@@ -1,16 +1,14 @@
 {
   "name": "my-fullstack-app",
-  "private": false,
+  "private": true,
   "version": "0.0.0",
-  "engines": {
-    "node": "18.2.0"
-  },
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
 
-    "start": "node -r esm backend/server.js",
+    "start": "node backend/server.js",
     "start-backend": "nodemon backend/server.js",
     "test-frontend": "npx http-server ./evaluate/"
   },
