@@ -26,8 +26,6 @@ const GamesData = (props: any) => {
     const [winHamster, setWinHamster] = useState<Hamster | null>()
     const [loseHamster, setLoseHamster] = useState<Hamster | null>()
     
-  
-
     async function updateHamster(id: any, hamsterToChange: { wins?: any; games?: any; defeats?: any }) {
         
         const response: Response = await fetch(fixUrl(`/hamsters/${id}`),
@@ -37,17 +35,8 @@ const GamesData = (props: any) => {
                 body: JSON.stringify(hamsterToChange)
             }
         )
-    }
-
-  
-    // async function getHamsters() {
-    //     const response = await fetch(fixUrl('/hamsters'))
-    //     const hamsters = await response.json()
-    // }
-        
-   
-   
-
+    }      
+      
     function battleVote(win: any, lose: any) {
         const winsUpdate = {
             wins: win.wins + 1,

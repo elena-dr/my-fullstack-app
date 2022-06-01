@@ -20,36 +20,6 @@ const Result = (props: any) => {
                 <li>Vinster: {lose.wins}</li>
                 <li>Förluster: {lose.defeats}</li>
             </ul>
-
-            {/* <td>
-                
-                <tr><th>Vinnare är: {win.name}</th></tr>
-                <tr>
-                    <td>Slagsmål</td>
-                    <td>{win.games}</td>
-                    </tr><tr>
-                    <td>Vinster</td>
-                        <td>{win.wins}</td>
-                    </tr>
-                    <tr></tr>
-                    <td>Förluster</td>
-                <td>{win.defeats}</td>
-                <tr><td></td></tr>
-                <tr><td></td></tr>
-                <tr><th>Förlorare är: {lose.name}</th></tr>
-                <tr>
-                    <td>Slagsmål</td>
-                    <td>{lose.games}</td>
-                </tr>
-                <tr>
-                    <td>Vinster</td>
-                    <td>{lose.wins}</td>
-                    </tr><tr>
-                    <td>Förluster</td>
-                    <td>{ lose.defeats }</td>
-                    </tr>
-                
-            </td> */}
     </div>
         )
 }
