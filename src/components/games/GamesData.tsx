@@ -54,7 +54,7 @@ const GamesData = (props: any) => {
             const updatedWin = await fetch(imageUrl(win.id));           
             const jsonWin = await updatedWin.json()
             setWinHamster(jsonWin)
-            
+            //console.log()
             const updatedLose = await fetch(imageUrl(lose.id));
             const jsonLose = await updatedLose.json()
             setLoseHamster(jsonLose)
