@@ -6,8 +6,8 @@ import './Gallery.css'
 import Toggle from './Toggle'
 
 
-const Gallery = (toggle: any) => {
-    // const {toggle} = props
+const Gallery = (props: any) => {
+    const {toggle} = props
     const [hamsters, setHamsters] = useState<null | Hamsters[]>(null)
     const [selectedHamster, setSelectedHamster] = useState("")
     const [name, setName] = useState<string>('')
@@ -102,7 +102,9 @@ const Gallery = (toggle: any) => {
                         <section className="section-h" key={hamster.id}>
                             <img src={imageUrl(hamster.imgName)} alt={hamster.name}></img>
                                 <p className="name">{hamster.name}</p>
-                                <button className="button" onClick={() => setSelectedHamster(hamster.id) } >Mer info</button>
+                                
+                                <button  className="button" onClick={() => setSelectedHamster(hamster.id)} >Mer info</button>
+                                
                                 <div className={moreInfo(hamster.id)}>
                                     
                                     <p>Vinster: {hamster.wins}</p>
