@@ -15,7 +15,7 @@ const Gallery = () => {
     const [favFood, setFavFood] = useState<string>('')
     const [loves, setLoves] = useState<string>('')
     const [image, setImage] = useState('')
-    const [toggle, setToggle] = useState(false)
+    // const [toggle, setToggle] = useState(false)
     
     // const triggerToggle = () => {
     //     if (setSelectedHamster === ) {
