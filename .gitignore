@@ -1,6 +1,5 @@
 node_modules/
 dist/
-firebaseConfig.json
-serviceAccount.json
+configs/
 
 

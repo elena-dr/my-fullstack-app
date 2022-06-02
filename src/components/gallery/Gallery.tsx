@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react'
 import { Hamsters } from '../../models/hamsters'
 import { fixUrl, imageUrl } from '../../utils'
 import './Gallery.css'
-import Toggle from './Toggle'
 
 
-const Gallery = (props: any) => {
-    const {toggle} = props
+
+const Gallery = () => {
+    
     const [hamsters, setHamsters] = useState<null | Hamsters[]>(null)
     const [selectedHamster, setSelectedHamster] = useState("")
     const [name, setName] = useState<string>('')
@@ -15,8 +15,15 @@ const Gallery = (props: any) => {
     const [favFood, setFavFood] = useState<string>('')
     const [loves, setLoves] = useState<string>('')
     const [image, setImage] = useState('')
+    const [toggle, setToggle] = useState(false)
     
-   
+    // const triggerToggle = () => {
+    //     if (setSelectedHamster === ) {
+    //         return ;
+    //     }
+    //     setToggle(!toggle)
+        
+    //    }
         
     const moreInfo = (hId: string) => {
         if (hId === selectedHamster) return ''
@@ -112,7 +119,7 @@ const Gallery = (props: any) => {
                                     <p>Favoritmat: {hamster.favFood}</p>
                                     <p>Älskar att: {hamster.loves}</p>
                                 </div>
-                            <button className="button" onClick={()=> deleteHamster(hamster.id)}>Ta bort</button>
+                                <button className="button" onClick={() => deleteHamster(hamster.id)}>Ta bort</button>
                         </section>)}
                     </div>
                     
