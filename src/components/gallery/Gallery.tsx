@@ -3,29 +3,27 @@ import { useState, useEffect } from 'react'
 import { Hamsters } from '../../models/hamsters'
 import { fixUrl, imageUrl } from '../../utils'
 import './Gallery.css'
+import Toggle from './Toggle'
 
 
-
-const Gallery = () => {
+const Gallery = (toggle: any) => {
+    // const {toggle} = props
     const [hamsters, setHamsters] = useState<null | Hamsters[]>(null)
-    
     const [selectedHamster, setSelectedHamster] = useState("")
     const [name, setName] = useState<string>('')
     const [age, setAge] = useState<string>('')
     const [favFood, setFavFood] = useState<string>('')
     const [loves, setLoves] = useState<string>('')
     const [image, setImage] = useState('')
-   
     
+   
+        
     const moreInfo = (hId: string) => {
         if (hId === selectedHamster) return ''
         return 'hide'
+       
     }
-
-    // const imageOnChange = (e: any) => {
-    //     const [imageUrl] = e.target.img;
-    //     setImage(URL.createObjectURL(imageUrl))
-    // }
+      
 
     const addHamster = async (e: any) => {
         e.preventDefault()
@@ -104,12 +102,13 @@ const Gallery = () => {
                         <section className="section-h" key={hamster.id}>
                             <img src={imageUrl(hamster.imgName)} alt={hamster.name}></img>
                                 <p className="name">{hamster.name}</p>
-                                <button className="button" onClick={() => setSelectedHamster(hamster.id) }>Mer info</button>
+                                <button className="button" onClick={() => setSelectedHamster(hamster.id) } >Mer info</button>
                                 <div className={moreInfo(hamster.id)}>
-                                    <p>{hamster.wins}</p>
-                                    <p>{hamster.defeats}</p>
-                                    <p>{hamster.favFood}</p>
-                                    <p>{hamster.loves}</p>
+                                    
+                                    <p>Vinster: {hamster.wins}</p>
+                                    <p>Förluster: {hamster.defeats}</p>
+                                    <p>Favoritmat: {hamster.favFood}</p>
+                                    <p>Älskar att: {hamster.loves}</p>
                                 </div>
                             <button className="button" onClick={()=> deleteHamster(hamster.id)}>Ta bort</button>
                         </section>)}

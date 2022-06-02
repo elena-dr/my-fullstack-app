@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react'
-// import { Hamsters } from '../../models/hamsters';
+
 import { fixUrl, imageUrl } from '../../utils';
 import './GamesData.css'
 import Result from './Results'
@@ -28,13 +28,13 @@ const GamesData = (props: any) => {
     
     async function updateHamster(id: any, hamsterToChange: { wins?: any; games?: any; defeats?: any }) {
         
-        const response: Response = await fetch(fixUrl(`/hamsters/${id}`),
+        const response = await fetch(fixUrl(`/hamsters/${id}`),
             {
                 method: 'PUT',
-                headers: { 'Content-type': 'application/json' },
+                headers: { 'Content-type': 'application/json', 'Accept': 'application/json' },
                 body: JSON.stringify(hamsterToChange)
             }
-        )
+        ).then(response => response.text()).then(text => console.log(text))
     }      
       
     function battleVote(win: any, lose: any) {
@@ -49,17 +49,19 @@ const GamesData = (props: any) => {
         Promise.all([
             updateHamster(win.id, winsUpdate),
             updateHamster(lose.id, loseUpdate)
-        ]).then(async () =>  {
-            const updatedWin = await fetch(imageUrl(win.id));
+        ]).then(async () => {
+            
+            const updatedWin = await fetch(imageUrl(win.id));           
             const jsonWin = await updatedWin.json()
             setWinHamster(jsonWin)
-
+            
             const updatedLose = await fetch(imageUrl(lose.id));
             const jsonLose = await updatedLose.json()
             setLoseHamster(jsonLose)
-            
-            
+                        
         })
+    
+        
     }
 
   
