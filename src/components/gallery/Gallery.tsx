@@ -1,9 +1,7 @@
-
 import React, { useState, useEffect } from 'react'
 import { Hamsters } from '../../models/hamsters'
 import { fixUrl, imageUrl } from '../../utils'
 import './Gallery.css'
-
 
 
 const Gallery = () => {
@@ -15,85 +13,8 @@ const Gallery = () => {
     const [favFood, setFavFood] = useState<string>('')
     const [loves, setLoves] = useState<string>('')
     const [image, setImage] = useState('')
-
-    // const [nameChanged, setNameChanged] = useState<boolean>(false)
-    // const [ageChanged, setAgeChanged] = useState<boolean>(false)
-    // const [favFoodChanged, setFavFodChanged] = useState<boolean>(false)
-    // const [lovesChanged, setLovesChanged] = useState<boolean>(false)
-    // const [imageChanged, setImageChanged] = useState<boolean>(false)
-
     const [errorMsg, setErrorMsg] = useState<string>('')
-    
-
-   
-   
-    // const handleNewNameChanged = (e: string | any) => {
-    //     e.preventDefault()
-    //     setName(e.target.value)
-    //     setNameChanged(false)
-    //     if (e.target.value.length >=2) {
-    //         setNameChanged(true)
-    //         setErrorMsg('')
-    //         // console.log('Nämn fler än 2 bokstäver!')
-    //     }
-    //     else if (e.target.value.length <= 3 ) {
-    //         setNameChanged(false)
-    //         setErrorMsg('Du måste skriv namn som fler än 2 bokstav!')
-    //         // console.log('Nämn måste innehålla fler än 2 bokstav!')
-    //     }
-    // }
-
-    // const handleNewAgeChanged = (e: number | any) => {
-    //     const ageIsCorrect: number | any = isCorrectAge(age)
-    //     setAgeChanged(ageIsCorrect)
-    //     if (e.target.valueAsNumber) {
-    //         setAge(e.target.valueAsNumber)
-    //     }
-    //     if (ageIsCorrect) {
-    //        console.log('Age is number')
-    //    setErrorMsg('')
-    //     }else {
-    //     setErrorMsg('Ålder måste vara en siffra')
-    // } 
-    // }
-    
-    // const handleNewFavFoodChanged = (e: string | any) => {
-    //     setFavFood(e.target.value)
-    //     setFavFodChanged(false)
-    //     if (e.target.value.length >= 3) {
-    //         setFavFodChanged(true)
-    //         setErrorMsg('')
-    //     } else if (e.target.value.length <= 3) {
-    //         setFavFodChanged(false)
-    //         setErrorMsg('Favoritmaten måste innehålla än 2 bokstav')
-    //     }
-    // }   
-    
-
-    // const handleNewLovesChanged = (e: string | any) => {
-    //     setLoves(e.target.value)
-    //     setLovesChanged(false)
-    //     if (e.target.value.length >= 3) {
-    //         setLovesChanged(true)
-    //         setErrorMsg('')
-    //     } else if (e.target.value.length <= 3) {
-    //         setLovesChanged(false)
-    //         setErrorMsg('Favorit aktiviteter måste innehålla än 2 bokstav')
-    //     }
-    // }
-
-    // const handleNewImageChanged = (e: string | any) => {
-    //     setImage(e.target.value)
-    //     setImageChanged(false)
-    //     if (e.target.value.length >= 3) {
-    //         setImageChanged(true)
-    //         setErrorMsg('')
-    //     } else if (e.target.value.length <= 3) {
-    //         setImageChanged(false)
-    //         setErrorMsg('Bildlänken måste innehålla än 2 bokstav')
-    //     }
-    // }
-
+        
     const moreInfo = (hId: string) => {
         if (hId === selectedHamster) return ''
         return 'hide'
@@ -107,10 +28,8 @@ const Gallery = () => {
         setImage('')
     }
   
-
     const addHamster = async (e: any) => {
         e.preventDefault()
-
         
         if (!name || name.length <=2) {
             setErrorMsg('Du måste skriv namn som fler än 2 bokstav!')
@@ -134,9 +53,7 @@ const Gallery = () => {
         }
 
         let newHamster = { imgName: image, name: name, age: age, favFood: favFood, loves: loves }
-
-
-        // if(nameChanged && ageChanged && favFoodChanged && lovesChanged && imageChanged === true) {
+       
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -148,9 +65,7 @@ const Gallery = () => {
                       
         console.log('added: ', result)
         getHamsters()
-        // } else
-        //     setErrorMsg('Något saknas! Fyller du i alla formulär? Varje sträng måste ha minst 2 bokstäver. Försök igen!')
-        // // console.log('something missing')
+        
         clearValue()
 
     }
