@@ -21,7 +21,7 @@ function App() {
 			<main>
 				<div className="main-div">
 					<Routes>
-						<Route path="/" element={<Start />} />
+						<Route path="*" element={<Start />} />
 						<Route path="/contest" element={<Contest />} />
 						<Route path="/gallery" element={<Gallery />} />
 						
