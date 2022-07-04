@@ -9,10 +9,10 @@ const Battle = () => {
 
     async function randomHamsterData() {
         setLoaded(false)
-        const response1: Response = await fetch(fixUrl('/hamsters/random'))
+        const response1: Response = await fetch(fixUrl('/hamsters/random'), {method: 'GET'})
         const resultRandom1 = await response1.json()
 
-        const response2: Response = await fetch(fixUrl('/hamsters/random'))
+        const response2: Response = await fetch(fixUrl('/hamsters/random'), {method: 'GET'})
         const resultRandom2 = await response2.json()
         
         setHamster1(resultRandom1)

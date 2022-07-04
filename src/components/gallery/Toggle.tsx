@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-const ToggleButton = () => {
+const Toggle = () => {
     const [toggle, setToggle] = useState<boolean>(false)
 
     const triggerToggle = () => {
@@ -13,4 +13,4 @@ const ToggleButton = () => {
 
 }
 
-export default ToggleButton
+export default Toggle

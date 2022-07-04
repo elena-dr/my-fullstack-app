@@ -1,8 +1,12 @@
 // Imports
-const firestoreService = require('firestore-export-import');
-const firebaseConfig = require('../firebase/firebaseConfig.json');
-const serviceAccount = require('../firebase/serviceAccount.json');
-const { getFirestore } = require('firebase-admin/firestore');
+// const firestoreService = require('firestore-export-import');
+import {firestoreService}  from 'firestore-export-import'
+// const firebaseConfig = require('../firebase/firebaseConfig.json');
+import {firebaseConfig}  from '../database/firebaseConfig.json'
+// const serviceAccount = require('../firebase/serviceAccount.json');
+import  {serviceAccount}  from '../database/serviceAccount.json'
+// const { getFirestore } = require('firebase-admin/firestore');
+import { getFirestore } from 'firebase-admin/firestore'
 
 
 // JSON To Firestore
@@ -14,7 +18,7 @@ const deleteCollection = async (collection) => {
 
         const db = getFirestore();
 
-        const deleted = await deleteCollection(db, collection)
+        const deleted = await deletedCollection(db, collection)
 
         console.log('deleted collection')
     }

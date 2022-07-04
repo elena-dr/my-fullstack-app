@@ -26,7 +26,7 @@ const GamesData = (props: any) => {
     const [winHamster, setWinHamster] = useState<Hamster | null>()
     const [loseHamster, setLoseHamster] = useState<Hamster | null>()
     
-    async function updateHamster(id: any, hamsterToChange: { wins?: any; games?: any; defeats?: any }) {
+    async function updateHamster(id: any, hamsterToChange: Object) {
         
         const response = await fetch(fixUrl(`/hamsters/${id}`),
             {
@@ -36,13 +36,17 @@ const GamesData = (props: any) => {
             }
         ).then(response => response.text()).then(text => console.log(text))
     }      
+
+  
       
     function battleVote(win: any, lose: any) {
         const winsUpdate = {
+            ...win,
             wins: win.wins + 1,
             games: win.games +1
         }
         const loseUpdate = {
+            ...lose,
             defeats: lose.defeats + 1,
             games: lose.games +1
         }
@@ -51,11 +55,11 @@ const GamesData = (props: any) => {
             updateHamster(lose.id, loseUpdate)
         ]).then(async () => {
             
-            const updatedWin = await fetch(imageUrl(win.id));           
+            const updatedWin = await fetch(fixUrl('/hamsters/'+win.id));
             const jsonWin = await updatedWin.json()
             setWinHamster(jsonWin)
-            //console.log()
-            const updatedLose = await fetch(imageUrl(lose.id));
+            // console.log(jsonWin)
+            const updatedLose = await fetch(fixUrl('/hamsters/'+lose.id));
             const jsonLose = await updatedLose.json()
             setLoseHamster(jsonLose)
                         

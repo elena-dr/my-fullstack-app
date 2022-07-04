@@ -12,7 +12,7 @@ let firebaseConfig;
 if (process.env.PRIVATE_KEY) {
     firebaseConfig = JSON.parse(process.env.PRIVATE_KEY)
 } else {
-    firebaseConfig = require('../configs/firebaseConfig.json')
+    firebaseConfig = require('../database/firebaseConfig.json')
 }
 //const firebaseConfig = require('./firebaseConfig.json')
 

@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // Konfiguration
-const PORT = process.env.PORT || 433
+const PORT = process.env.PORT || 1433
 const distPath = path.join(__dirname, '/../dist/')
 
 // Middleware

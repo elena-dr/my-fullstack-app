@@ -28,9 +28,7 @@ function App() {
 					</Routes>
 </div>
 			</main>
-			{/* <div className="footer">
-<p>Lena Drozdova, Hamster War, 2022</p>
-			</div> */}
+			
 			
 		</div>
 	)

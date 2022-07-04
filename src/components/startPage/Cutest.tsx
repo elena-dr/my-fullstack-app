@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+import { Link, Routes, Route } from 'react-router-dom'
 import { Hamsters } from '../../models/hamsters'
 import { fixUrl, imageUrl } from '../../utils'
 import './Cutest.css'
+import Contest from '../contest/Contest'
 
 
 const Cutest = () => {
@@ -43,7 +45,16 @@ const Cutest = () => {
                 <img className="image-cutest" src={imageUrl(cutest.imgName)} alt={cutest.imgName} />
                 <p className="name-cutest">{cutest.name }</p>
             </div>) : 'Inga sötaste hittade...'}
-    </div>
+            <div>
+                <h3>Klicka på knappen och gå till Tåvla-sidan</h3>
+                <Routes>
+                <Route path="/contest" element={<Contest />} />
+                </Routes>
+                <button className="button">
+                <Link className="button-link" to="/contest">Klicka här</Link></button>
+            </div>
+        </div>
+        
 )
 
 }
