@@ -8,8 +8,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "reset": "node backend/scripts/resetDatabase.js",
-    "import": "node -r esm backend/scripts/importData.js",
-    "start": "node backend/server.js",
+    "import": "node backend/scripts/importData.js",
+    "start": "nodemon backend/server.js",
     "start-backend": "nodemon backend/server.js",
     "test-frontend": "npx http-server ./evaluate/"
   },
